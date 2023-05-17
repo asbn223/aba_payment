@@ -10,13 +10,13 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  dio: ^4.0.0 # http client helper
-  crypto: ^3.0.1 # hash helper
-  intl: ^0.17.0 # date fomart
-  flutter_inappwebview: ^6.0.0-beta.11 # embed webview into widget
-  url_launcher: ^6.0.4 # launch any scheme
+  dio: ^4.0.6 # http client helper
+  crypto: ^3.0.3 # hash helper
+  intl: ^0.18.1 # date fomart
+  flutter_inappwebview: ^5.7.2+3 # embed webview into widget
+  url_launcher: ^6.1.11 # launch any scheme
   easy_logger: ^0.0.2 # bueaty logger
-  fluttertoast: ^8.0.7 # easy to handle toast bar
+  fluttertoast: ^8.2.1 # easy to handle toast bar
   flutter_dotenv: ^5.0.2
   
 dev_dependencies:

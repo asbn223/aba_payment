@@ -29,18 +29,12 @@ class _ABACheckoutWebViewState extends State<ABACheckoutWebView> {
       ),
       body: InAppWebView(
         pullToRefreshController: pullToRefreshController,
-        initialSettings: InAppWebViewSettings(
-            cacheEnabled: true,
-            useHybridComposition: true,
-            thirdPartyCookiesEnabled: true,
-            sharedCookiesEnabled: true),
         onWebViewCreated: (controller) {
           webViewController = controller;
           final Map<String, String> headers =
               kIsWeb ? {} : {"Referer": widget.merchant.refererDomain!};
           webViewController.loadUrl(
-            urlRequest:
-                URLRequest(url: WebUri.uri(widget.uri!), headers: headers),
+            urlRequest: URLRequest(url: widget.uri!, headers: headers),
           );
         },
       ),
