@@ -100,7 +100,7 @@ class ABATransaction {
   String get encodedItem =>
       EncoderService.base46_encode(items!.map((e) => e.toMap()).toList());
 
-  String get hash {
+  String get abaHash {
     return ABAClientService(merchant).getHash(
       reqTime: reqTime.toString(),
       tranId: tranID.toString(),
@@ -127,7 +127,7 @@ class ABATransaction {
       "tran_id": tranID,
       "amount": amount,
       "items": encodedItem,
-      "hash": hash,
+      "hash": abaHash,
       "firstname": firstname,
       "lastname": lastname,
       "phone": phone,
@@ -150,7 +150,7 @@ class ABATransaction {
       "tran_id": tranID,
       "amount": amount.toString(),
       "items": encodedItem.toString(),
-      "hash": hash,
+      "hash": abaHash,
       "firstname": firstname.toString(),
       "lastname": lastname.toString(),
       "phone": phone.toString(),

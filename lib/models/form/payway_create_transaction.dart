@@ -54,7 +54,7 @@ extension PaywayCreateTransactionExt on PaywayCreateTransaction {
       "tran_id": tranId.toString(),
       "amount": amount.toString(),
       "items": encodedItem.toString(),
-      "hash": hash.toString(),
+      "hash": abaHash ?? hash.toString(),
       "firstname": firstname.toString(),
       "lastname": lastname.toString(),
       "phone": phone.toString(),
@@ -84,6 +84,7 @@ class PaywayCreateTransaction {
   final String? continueSuccessUrl;
   final String? returnParams;
   final double? shipping;
+  final String? abaHash;
   ABAPaymentOption option;
   ABATransactionType type;
   ABATransactionCurrency currency;
@@ -97,6 +98,7 @@ class PaywayCreateTransaction {
     required this.lastname,
     required this.phone,
     required this.email,
+    this.abaHash,
     this.returnUrl,
     this.continueSuccessUrl,
     this.returnParams,
@@ -119,6 +121,7 @@ class PaywayCreateTransaction {
       lastname: "",
       phone: "",
       email: "",
+      abaHash: "",
     );
   }
 
@@ -139,6 +142,7 @@ class PaywayCreateTransaction {
       'type': type.name,
       'payment_option': option.name,
       'currency': currency.name,
+      'hash': abaHash,
     };
   }
 
@@ -147,6 +151,7 @@ class PaywayCreateTransaction {
       tranId: map['tran_id'] ?? '',
       reqTime: map['req_time'] ?? '',
       amount: map['amount']?.toDouble() ?? 0.0,
+      abaHash: map['hash'],
       items: List<PaywayTransactionItem>.from(
           map['items']?.map((x) => PaywayTransactionItem.fromMap(x))),
       firstname: map['firstname'] ?? '',
@@ -172,6 +177,7 @@ class PaywayCreateTransaction {
     List<PaywayTransactionItem>? items,
     String? firstname,
     String? lastname,
+    String? hash,
     String? phone,
     String? email,
     String? returnUrl,
@@ -198,12 +204,13 @@ class PaywayCreateTransaction {
       option: option ?? this.option,
       type: type ?? this.type,
       currency: currency ?? this.currency,
+      abaHash: hash ?? this.abaHash,
     );
   }
 
   @override
   String toString() {
-    return 'PaywayTransaction(tranId: $tranId, reqTime: $reqTime, amount: $amount, items: $items, firstname: $firstname, lastname: $lastname, phone: $phone, email: $email, returnUrl: $returnUrl, continueSuccessUrl: $continueSuccessUrl, returnParams: $returnParams, shipping: $shipping, option: $option, type: $type, currency: $currency)';
+    return 'PaywayTransaction(tranId: $tranId, reqTime: $reqTime, amount: $amount, items: $items, firstname: $firstname, lastname: $lastname, phone: $phone, email: $email, returnUrl: $returnUrl, continueSuccessUrl: $continueSuccessUrl, returnParams: $returnParams, shipping: $shipping, option: $option, type: $type, currency: $currency, hash:$abaHash)';
   }
 
   @override
